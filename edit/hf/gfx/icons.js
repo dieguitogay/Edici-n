@@ -1,0 +1,19 @@
+// Íconos lineales simples (trazo), sin dependencias externas
+window.ICONS = {
+  fan:   '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="20" r="3"/><path d="M24 17c-2-6 0-11 5-11 4 0 4 6-2 10M27 21c6 0 10 3 9 8-1 4-7 3-10-2M21 22c-3 5-8 7-11 4-3-3 1-8 7-8"/><path d="M24 23v15M16 42h16"/></svg>',
+  fridge:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="4" width="24" height="40" rx="3"/><path d="M12 18h24M17 10v4M17 23v7"/></svg>',
+  wifi:  '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18a26 26 0 0 1 36 0M12 25a17 17 0 0 1 24 0M18 32a8 8 0 0 1 12 0"/><circle cx="24" cy="38" r="1.8" fill="currentColor"/></svg>',
+  bulb:  '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 30c-4-3-6-7-6-11a13 13 0 0 1 26 0c0 4-2 8-6 11v4H17z"/><path d="M19 40h10M21 45h6"/></svg>',
+  tv:    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="38" height="25" rx="3"/><path d="M17 42h14M24 35v7"/></svg>',
+  ac:    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="40" height="16" rx="3"/><path d="M10 21h28M14 32l-2 6M24 32v7M34 32l2 6"/></svg>',
+  battery:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="32" height="20" rx="3"/><path d="M42 21v6M22 18l-5 7h8l-5 7"/></svg>',
+  clock: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M24 14v10l7 5"/></svg>',
+  grid:  '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l-8 40M24 4l8 40M14 16h20M11 28h26M18 4h12"/></svg>',
+  home:  '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22L24 7l18 15M11 18v24h26V18"/><path d="M20 42V30h8v12"/></svg>',
+  inverter:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="6" width="32" height="36" rx="3"/><path d="M15 17c3-4 6 4 9 0s6 4 9 0M15 30h18"/></svg>',
+  sun:   '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="8"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M10 38l4-4M34 14l4-4"/></svg>',
+  panel: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10h28l6 22H4z"/><path d="M7 21h34M19 10l-3 22M29 10l3 22M24 32v8M16 42h16"/></svg>',
+  shield:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l16 6v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><path d="M25 14l-6 10h8l-6 10"/></svg>',
+  check: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 25l9 9 19-20"/></svg>',
+  cal:   '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="36" height="33" rx="3"/><path d="M6 19h36M16 5v8M32 5v8M17 30l5 5 9-9"/></svg>'
+};

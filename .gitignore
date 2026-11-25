@@ -1,5 +1,17 @@
-# Edición de video: dependencias y medios locales
+# Dependencias
 node_modules/
-work/
-edit/
+# Medios pesados y renders (no caben en GitHub)
+*.mp4
+*.mov
+*.MOV
+*.wav
+*.npy
 *.log
+work/src/
+work/stills/
+work/cutpairs/
+work/*.jpg
+work/*.png
+edit/public/
+edit/hf/out/
+edit/hf/test/

@@ -1,0 +1,613 @@
+{
+ "fps": 30,
+ "frames": 2957,
+ "video": [
+  {
+   "src": 0,
+   "out": 0,
+   "dur": 187,
+   "scale": 1.0
+  },
+  {
+   "src": 191,
+   "out": 187,
+   "dur": 140,
+   "scale": 1.0
+  },
+  {
+   "src": 354,
+   "out": 327,
+   "dur": 100,
+   "scale": 1.0
+  },
+  {
+   "src": 454,
+   "out": 427,
+   "dur": 159,
+   "scale": 1.0
+  },
+  {
+   "src": 619,
+   "out": 586,
+   "dur": 130,
+   "scale": 1.0
+  },
+  {
+   "src": 749,
+   "out": 716,
+   "dur": 166,
+   "scale": 1.08
+  },
+  {
+   "src": 915,
+   "out": 882,
+   "dur": 160,
+   "scale": 1.0
+  },
+  {
+   "src": 1075,
+   "out": 1042,
+   "dur": 94,
+   "scale": 1.0
+  },
+  {
+   "src": 1178,
+   "out": 1136,
+   "dur": 135,
+   "scale": 1.0
+  },
+  {
+   "src": 1319,
+   "out": 1271,
+   "dur": 124,
+   "scale": 1.08
+  },
+  {
+   "src": 1443,
+   "out": 1395,
+   "dur": 139,
+   "scale": 1.0
+  },
+  {
+   "src": 1591,
+   "out": 1534,
+   "dur": 92,
+   "scale": 1.0
+  },
+  {
+   "src": 1700,
+   "out": 1626,
+   "dur": 113,
+   "scale": 1.08
+  },
+  {
+   "src": 1831,
+   "out": 1739,
+   "dur": 104,
+   "scale": 1.0
+  },
+  {
+   "src": 1942,
+   "out": 1843,
+   "dur": 109,
+   "scale": 1.08
+  },
+  {
+   "src": 2054,
+   "out": 1952,
+   "dur": 107,
+   "scale": 1.0
+  },
+  {
+   "src": 2165,
+   "out": 2059,
+   "dur": 75,
+   "scale": 1.08
+  },
+  {
+   "src": 2254,
+   "out": 2134,
+   "dur": 217,
+   "scale": 1.08
+  },
+  {
+   "src": 2479,
+   "out": 2351,
+   "dur": 140,
+   "scale": 1.0
+  },
+  {
+   "src": 2628,
+   "out": 2491,
+   "dur": 163,
+   "scale": 1.08
+  },
+  {
+   "src": 2796,
+   "out": 2654,
+   "dur": 113,
+   "scale": 1.0
+  },
+  {
+   "src": 2918,
+   "out": 2767,
+   "dur": 190,
+   "scale": 1.0
+  }
+ ],
+ "audio": [
+  {
+   "src": 0,
+   "out": 0,
+   "dur": 190,
+   "fin": 0,
+   "fout": 6
+  },
+  {
+   "src": 188,
+   "out": 184,
+   "dur": 146,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 351,
+   "out": 324,
+   "dur": 265,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 616,
+   "out": 583,
+   "dur": 556,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 1175,
+   "out": 1133,
+   "dur": 141,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 1316,
+   "out": 1268,
+   "dur": 269,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 1588,
+   "out": 1531,
+   "dur": 98,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 1697,
+   "out": 1623,
+   "dur": 119,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 1828,
+   "out": 1736,
+   "dur": 110,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 1939,
+   "out": 1840,
+   "dur": 115,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 2051,
+   "out": 1949,
+   "dur": 113,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 2162,
+   "out": 2056,
+   "dur": 81,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 2251,
+   "out": 2131,
+   "dur": 223,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 2476,
+   "out": 2348,
+   "dur": 146,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 2625,
+   "out": 2488,
+   "dur": 169,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 2793,
+   "out": 2651,
+   "dur": 119,
+   "fin": 6,
+   "fout": 6
+  },
+  {
+   "src": 2915,
+   "out": 2764,
+   "dur": 193,
+   "fin": 6,
+   "fout": 8
+  }
+ ],
+ "cues": [
+  {
+   "text": "Son las 2 de la mañana,",
+   "sf": 0,
+   "ef": 24
+  },
+  {
+   "text": "otra vez te cortaron la *luz*",
+   "sf": 25,
+   "ef": 69
+  },
+  {
+   "text": "y tu casa ahora se convierte en un *horno*",
+   "sf": 70,
+   "ef": 122
+  },
+  {
+   "text": "durante las próximas 6 horas.",
+   "sf": 123,
+   "ef": 189
+  },
+  {
+   "text": "Sabes que no vas a dormir nada,",
+   "sf": 190,
+   "ef": 223
+  },
+  {
+   "text": "mañana tienes que trabajar temprano",
+   "sf": 224,
+   "ef": 272
+  },
+  {
+   "text": "y tus hijos empiezan a llorar.",
+   "sf": 273,
+   "ef": 332
+  },
+  {
+   "text": "Es la impotencia de ver",
+   "sf": 332,
+   "ef": 358
+  },
+  {
+   "text": "cómo se te daña la comida en la *nevera*.",
+   "sf": 359,
+   "ef": 424
+  },
+  {
+   "text": "Se te cae el *internet*",
+   "sf": 425,
+   "ef": 448
+  },
+  {
+   "text": "a la mitad de un trabajo importante",
+   "sf": 449,
+   "ef": 481
+  },
+  {
+   "text": "y saber que tú y tu familia",
+   "sf": 482,
+   "ef": 539
+  },
+  {
+   "text": "se van a trasnochar.",
+   "sf": 540,
+   "ef": 589
+  },
+  {
+   "text": "El verdadero lujo hoy",
+   "sf": 590,
+   "ef": 620
+  },
+  {
+   "text": "no es un carro del año,",
+   "sf": 621,
+   "ef": 653
+  },
+  {
+   "text": "es la *tranquilidad* de tu familia.",
+   "sf": 654,
+   "ef": 698
+  },
+  {
+   "text": "En *ALK* no te instalamos un equipito barato",
+   "sf": 699,
+   "ef": 778
+  },
+  {
+   "text": "para prender 3 bombillos",
+   "sf": 779,
+   "ef": 818
+  },
+  {
+   "text": "que se te va a dañar en 3 meses.",
+   "sf": 819,
+   "ef": 885
+  },
+  {
+   "text": "Nosotros montamos",
+   "sf": 886,
+   "ef": 904
+  },
+  {
+   "text": "infraestructura eléctrica *profesional*,",
+   "sf": 905,
+   "ef": 986
+  },
+  {
+   "text": "blindada contra picos de voltaje.",
+   "sf": 987,
+   "ef": 1039
+  },
+  {
+   "text": "Cero ruido de plantas eléctricas,",
+   "sf": 1040,
+   "ef": 1079
+  },
+  {
+   "text": "cero humo y cero mantenimiento.",
+   "sf": 1080,
+   "ef": 1136
+  },
+  {
+   "text": "Opción esencial desde *1.500 dólares*,",
+   "sf": 1137,
+   "ef": 1192
+  },
+  {
+   "text": "diseñada para casas, apartamentos u oficinas.",
+   "sf": 1193,
+   "ef": 1271
+  },
+  {
+   "text": "Te da de *5 a 6 horas* de autonomía real",
+   "sf": 1272,
+   "ef": 1328
+  },
+  {
+   "text": "para mantener activos 2 ventiladores",
+   "sf": 1329,
+   "ef": 1395
+  },
+  {
+   "text": "y iluminación LED completa,",
+   "sf": 1396,
+   "ef": 1428
+  },
+  {
+   "text": "televisores y tu internet encendido",
+   "sf": 1429,
+   "ef": 1481
+  },
+  {
+   "text": "para que nunca dejes de producir.",
+   "sf": 1482,
+   "ef": 1536
+  },
+  {
+   "text": "Hogar funcional desde *3.100 dólares*,",
+   "sf": 1537,
+   "ef": 1594
+  },
+  {
+   "text": "el equilibrio perfecto.",
+   "sf": 1595,
+   "ef": 1628
+  },
+  {
+   "text": "Cuenta con *9,6 kWh* de energía",
+   "sf": 1629,
+   "ef": 1685
+  },
+  {
+   "text": "para respaldar tu nevera,",
+   "sf": 1686,
+   "ef": 1740
+  },
+  {
+   "text": "iluminación, internet",
+   "sf": 1741,
+   "ef": 1773
+  },
+  {
+   "text": "y un aire acondicionado de *12.000 BTU*,",
+   "sf": 1774,
+   "ef": 1843
+  },
+  {
+   "text": "para que duermas fresco y protejas tus alimentos",
+   "sf": 1844,
+   "ef": 1894
+  },
+  {
+   "text": "sin turnar los equipos.",
+   "sf": 1895,
+   "ef": 1950
+  },
+  {
+   "text": "Sistema Elite 6000 desde *5.150 dólares*,",
+   "sf": 1951,
+   "ef": 2039
+  },
+  {
+   "text": "para quienes no aceptan",
+   "sf": 2040,
+   "ef": 2094
+  },
+  {
+   "text": "interrupciones en su confort.",
+   "sf": 2095,
+   "ef": 2127
+  },
+  {
+   "text": "Es un tanque masivo de *19,2 kWh*",
+   "sf": 2128,
+   "ef": 2203
+  },
+  {
+   "text": "de autonomía real.",
+   "sf": 2204,
+   "ef": 2245
+  },
+  {
+   "text": "Mantiene encendidos en simultáneo",
+   "sf": 2246,
+   "ef": 2284
+  },
+  {
+   "text": "2 aires acondicionados de *12.000 BTU*.",
+   "sf": 2285,
+   "ef": 2351
+  },
+  {
+   "text": "Nevera, freezer, computadora",
+   "sf": 2352,
+   "ef": 2387
+  },
+  {
+   "text": "y toda tu casa funcionando",
+   "sf": 2388,
+   "ef": 2427
+  },
+  {
+   "text": "como si nunca se hubiese ido la luz.",
+   "sf": 2428,
+   "ef": 2488
+  },
+  {
+   "text": "Lo mejor de todo es que toda nuestra ingeniería",
+   "sf": 2489,
+   "ef": 2559
+  },
+  {
+   "text": "es 100 % escalable",
+   "sf": 2560,
+   "ef": 2601
+  },
+  {
+   "text": "a *energía solar* en el futuro.",
+   "sf": 2602,
+   "ef": 2654
+  },
+  {
+   "text": "Deja de sufrir por la red eléctrica",
+   "sf": 2655,
+   "ef": 2705
+  },
+  {
+   "text": "y toma el control de tu hogar hoy mismo.",
+   "sf": 2706,
+   "ef": 2767
+  },
+  {
+   "text": "Haz clic abajo,",
+   "sf": 2768,
+   "ef": 2792
+  },
+  {
+   "text": "agenda una asesoría técnica *sin costo*",
+   "sf": 2793,
+   "ef": 2849
+  },
+  {
+   "text": "por parte de nuestro equipo de ingenieros",
+   "sf": 2850,
+   "ef": 2887
+  },
+  {
+   "text": "y deja que nosotros nos encarguemos del resto.",
+   "sf": 2888,
+   "ef": 2957
+  }
+ ],
+ "gfx": [
+  {
+   "id": "blackout",
+   "sf": 405,
+   "df": 87,
+   "full": false
+  },
+  {
+   "id": "infra",
+   "sf": 872,
+   "df": 170,
+   "full": true
+  },
+  {
+   "id": "plan1",
+   "sf": 1136,
+   "df": 395,
+   "full": false
+  },
+  {
+   "id": "plan2",
+   "sf": 1536,
+   "df": 411,
+   "full": false
+  },
+  {
+   "id": "plan3",
+   "sf": 1950,
+   "df": 527,
+   "full": false
+  },
+  {
+   "id": "uses1",
+   "sf": 1362,
+   "df": 169,
+   "full": false
+  },
+  {
+   "id": "uses2",
+   "sf": 1720,
+   "df": 66,
+   "full": false
+  },
+  {
+   "id": "stat",
+   "sf": 2120,
+   "df": 126,
+   "full": true
+  },
+  {
+   "id": "solar",
+   "sf": 2477,
+   "df": 177,
+   "full": true
+  },
+  {
+   "id": "cta",
+   "sf": 2795,
+   "df": 162,
+   "full": false
+  }
+ ]
+}
