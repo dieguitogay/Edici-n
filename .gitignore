@@ -1,0 +1,5 @@
+# Edición de video: dependencias y medios locales
+node_modules/
+work/
+edit/
+*.log
