@@ -1,0 +1,399 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+html,body{margin:0;background:#000}
+*{box-sizing:border-box}
+#root{width:1080px;height:1920px;position:relative;overflow:hidden;background:#020306;font-family:Inter,sans-serif;color:#fff}
+.scene{position:absolute;inset:0;overflow:hidden;opacity:0}
+.cam{position:absolute;left:-80px;top:-140px;width:1240px;height:2200px;transform-origin:50% 50%}
+.abs{position:absolute}
+.fill{position:absolute;inset:0}
+.cap{position:absolute;left:72px;top:236px;font-family:'JetBrains Mono',monospace;font-size:34px;letter-spacing:.08em;color:rgba(235,240,255,.86);text-shadow:0 0 14px rgba(0,0,0,.8)}
+.cap span{opacity:0}
+.grain{position:absolute;inset:0;background-size:540px 960px;mix-blend-mode:overlay;opacity:.22;pointer-events:none}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 78% 62% at 50% 46%,rgba(0,0,0,0) 45%,rgba(0,0,0,.55) 80%,rgba(0,0,0,.85) 100%);pointer-events:none}
+.moon-stripes{background:repeating-linear-gradient(105deg,rgba(150,180,235,.0) 0 46px,rgba(150,180,235,.13) 46px 92px)}
+/* ---- 1 reloj ---- */
+#s1 .wall{background:radial-gradient(ellipse 70% 40% at 50% 54%,#3b0a0b 0%,#1b0607 35%,#08070a 72%,#030305 100%)}
+#s1 .lamp{left:-200px;top:300px;width:1100px;height:1100px;background:radial-gradient(circle at 30% 45%,rgba(255,170,95,.42),rgba(255,140,70,.12) 38%,rgba(0,0,0,0) 62%)}
+#s1 .fanshadow{left:120px;top:120px;width:1000px;height:1000px;border-radius:50%;filter:blur(18px);opacity:.55;
+  background:conic-gradient(from 0deg,rgba(0,0,0,.85) 0 14deg,rgba(0,0,0,0) 14deg 72deg,rgba(0,0,0,.85) 72deg 86deg,rgba(0,0,0,0) 86deg 144deg,rgba(0,0,0,.85) 144deg 158deg,rgba(0,0,0,0) 158deg 216deg,rgba(0,0,0,.85) 216deg 230deg,rgba(0,0,0,0) 230deg 288deg,rgba(0,0,0,.85) 288deg 302deg,rgba(0,0,0,0) 302deg 360deg);
+  -webkit-mask:radial-gradient(circle,#000 30%,transparent 70%)}
+#s1 .table{left:0;right:0;top:1250px;bottom:0;background:linear-gradient(#1a100b,#080504 60%);border-top:2px solid rgba(255,120,90,.18)}
+#s1 .clock{left:210px;top:860px;width:820px;height:360px;border-radius:48px;background:linear-gradient(#18181b,#060607 70%);box-shadow:0 40px 80px rgba(0,0,0,.8),inset 0 2px 0 rgba(255,255,255,.08)}
+#s1 .screen{left:40px;top:40px;right:40px;bottom:40px;border-radius:24px;background:#0e0303;box-shadow:inset 0 6px 20px rgba(0,0,0,.9)}
+#s1 .digits{left:60px;top:46px;width:620px;height:190px;filter:drop-shadow(0 0 6px #ff2a2a) drop-shadow(0 0 22px rgba(255,30,30,.7))}
+#s1 .ampm{left:690px;top:70px;font-size:22px;font-weight:700;color:#ff3b3b;text-shadow:0 0 10px #f22}
+#s1 .refl{left:250px;top:1262px;width:740px;height:200px;transform:scaleY(-1);filter:blur(7px);opacity:.28;-webkit-mask:linear-gradient(to top,#000,transparent 85%)}
+#s1 .glass{left:110px;top:900px;width:120px;height:350px;border-radius:14px 14px 20px 20px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,90,90,.12) 30%,rgba(255,255,255,.02) 60%,rgba(255,90,90,.08));border:1px solid rgba(255,120,120,.16)}
+/* ---- 2a ventilador ---- */
+#s2 .ceil{background:radial-gradient(ellipse 80% 60% at 50% 48%,#13203a 0%,#0a1222 45%,#04060c 100%)}
+#s2 .fan{left:170px;top:620px;width:900px;height:900px}
+#s2 .blur{left:170px;top:620px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(20,18,18,.0) 12%,rgba(30,27,26,.75) 18%,rgba(30,27,26,.55) 60%,rgba(30,27,26,.0) 72%)}
+/* ---- 2b termómetro ---- */
+#s3 .wall{background:radial-gradient(ellipse 70% 60% at 50% 50%,#141c2c,#06080e 80%)}
+#s3 .heat{background:radial-gradient(ellipse 80% 70% at 50% 60%,rgba(255,90,30,.55),rgba(255,60,20,.18) 50%,rgba(0,0,0,0) 80%);mix-blend-mode:screen;opacity:0}
+#s3 .board{filter:brightness(.6) saturate(.85);left:400px;top:330px;width:440px;height:1500px;border-radius:40px;background:linear-gradient(90deg,#c9ccd2,#eceef2 40%,#b9bcc4);box-shadow:0 40px 90px rgba(0,0,0,.7)}
+#s3 .tube{left:200px;top:110px;width:44px;height:1180px;border-radius:22px;background:linear-gradient(90deg,#d9dde4,#ffffff 40%,#c7ccd6);box-shadow:inset 0 0 0 2px rgba(0,0,0,.12)}
+#s3 .merc{left:211px;width:22px;border-radius:11px;bottom:290px;background:linear-gradient(90deg,#9b0000,#ff2a1a 45%,#b30000);height:0}
+#s3 .bulb{left:178px;top:1250px;width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#ff7a6a,#e0140a 40%,#7a0000);box-shadow:0 0 30px rgba(255,40,20,.6)}
+#s3 .tick{position:absolute;height:3px;background:#2a2d33}
+#s3 .num{position:absolute;font-size:36px;font-weight:600;color:#23262c;width:80px;text-align:right}
+#s3 .unit{left:286px;top:40px;font-size:54px;font-weight:700;color:#23262c}
+/* ---- 3 reloj de pared ---- */
+#s4 .wall{background:radial-gradient(ellipse 70% 55% at 50% 48%,#18253f,#070b14 80%)}
+#s4 .face{left:200px;top:580px;width:840px;height:840px;border-radius:50%;background:radial-gradient(circle at 45% 40%,#d7dde8,#aab3c4 60%,#7d8799);filter:brightness(.66);box-shadow:0 0 0 26px #0b0d12,0 50px 120px rgba(0,0,0,.8),inset 0 0 50px rgba(0,0,0,.35)}
+#s4 .hand{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;border-radius:8px;background:#111317}
+#s4 .mk{position:absolute;left:50%;top:0;width:8px;height:46px;margin-left:-4px;transform-origin:50% 420px;background:#1b1e24}
+/* ---- 4 teléfono ---- */
+#s5 .sheet{background:
+  linear-gradient(115deg,rgba(255,255,255,0) 20%,rgba(140,160,210,.07) 28%,rgba(0,0,0,0) 36%),
+  linear-gradient(70deg,rgba(0,0,0,0) 45%,rgba(140,160,210,.06) 52%,rgba(0,0,0,0) 60%),
+  linear-gradient(150deg,rgba(0,0,0,0) 60%,rgba(140,160,210,.05) 68%,rgba(0,0,0,0) 76%),
+  radial-gradient(ellipse at 50% 50%,#121a2c,#05070d 85%)}
+#s5 .spill{left:60px;top:300px;width:1100px;height:1500px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(150,175,255,.30),rgba(120,140,230,.10) 45%,rgba(0,0,0,0) 72%);opacity:0}
+#s5 .phone{left:390px;top:560px;width:480px;height:990px;border-radius:66px;background:#0b0c0f;box-shadow:0 0 0 3px #3a3d44,0 40px 90px rgba(0,0,0,.8);transform:rotate(-9deg)}
+#s5 .scr{left:16px;top:16px;right:16px;bottom:16px;border-radius:52px;overflow:hidden;background:#050608}
+#s5 .wp{background:radial-gradient(ellipse at 30% 20%,#33407a,#151a36 45%,#07080f 90%);opacity:0}
+#s5 .sb{left:34px;right:34px;top:26px;display:flex;justify-content:space-between;font-size:22px;font-weight:600;color:rgba(255,255,255,.9)}
+#s5 .date{left:0;right:0;top:150px;text-align:center;font-size:30px;font-weight:500;color:rgba(255,255,255,.85)}
+#s5 .time{left:0;right:0;top:186px;text-align:center;font-size:170px;font-weight:300;letter-spacing:-.04em;color:#fff}
+#s5 .notif{left:22px;right:22px;top:520px;padding:22px 24px;border-radius:30px;background:rgba(255,255,255,.16);opacity:0}
+#s5 .notif .t{font-size:24px;font-weight:600;color:rgba(255,255,255,.75)}
+#s5 .notif .b{font-size:34px;font-weight:700;margin-top:6px}
+#s5 .notif .c{font-size:26px;font-weight:500;color:#ffc46b;margin-top:6px}
+#s5 .glare{background:linear-gradient(120deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.07) 38%,rgba(255,255,255,0) 46%)}
+/* ---- 5 monitor de bebé ---- */
+#s6 .wall{background:radial-gradient(ellipse 70% 50% at 50% 46%,#101a17,#050807 80%)}
+#s6 .dresser{left:0;right:0;top:1380px;bottom:0;background:linear-gradient(#17110c,#070504 70%);border-top:2px solid rgba(160,255,190,.10)}
+#s6 .dev{left:200px;top:640px;width:800px;height:760px;border-radius:70px;background:linear-gradient(#80858c,#454950);box-shadow:0 50px 100px rgba(0,0,0,.8),inset 0 3px 0 rgba(255,255,255,.6)}
+#s6 .ant{left:690px;top:420px;width:34px;height:260px;border-radius:17px;background:linear-gradient(90deg,#4a4e55,#7b8088,#43474e)}
+#s6 .lcd{left:70px;top:70px;width:660px;height:480px;border-radius:26px;overflow:hidden;background:#0d130f;box-shadow:inset 0 0 0 6px #22262b}
+#s6 .nv{background:radial-gradient(ellipse 70% 70% at 50% 55%,#58705f,#22312a 60%,#0b120e);filter:contrast(1.1)}
+#s6 .bars{left:60px;right:60px;top:40px;bottom:120px}
+#s6 .bar{position:absolute;top:0;bottom:0;width:16px;border-radius:8px;background:linear-gradient(#93b39c,#3c5446)}
+#s6 .rail{position:absolute;left:0;right:0;height:18px;border-radius:9px;background:#8faa96}
+#s6 .blanket{left:150px;top:300px;width:360px;height:140px;border-radius:70px 70px 30px 30px;background:radial-gradient(ellipse at 50% 30%,#a3bfaa,#5d7a66)}
+#s6 .scan{background:repeating-linear-gradient(#000 0 2px,rgba(0,0,0,0) 2px 5px);opacity:.25}
+#s6 .osd{left:20px;top:16px;font-family:'JetBrains Mono',monospace;font-size:24px;color:#d7f5df}
+#s6 .alert{right:18px;top:14px;padding:6px 14px;border-radius:10px;background:#e0241b;font-size:24px;font-weight:700;opacity:0}
+#s6 .leds{left:180px;top:620px;width:440px;height:60px;display:flex;justify-content:space-between}
+#s6 .led{width:62px;height:30px;border-radius:15px;background:#3a3d42;margin-top:15px}
+/* ---- 6 nevera ---- */
+#s7 .kitchen{background:#020305}
+#s7 .inner{left:150px;top:330px;width:940px;height:1380px;border-radius:26px;background:linear-gradient(90deg,#c5cbd3,#eef1f5 50%,#c5cbd3);overflow:hidden}
+#s7 .shelf{position:absolute;left:0;right:0;height:16px;background:linear-gradient(rgba(255,255,255,.9),rgba(170,190,210,.55));box-shadow:0 6px 10px rgba(0,0,0,.2)}
+#s7 .dark{filter:brightness(.07) saturate(.4)}
+#s7 .lit{-webkit-mask-image:radial-gradient(circle 290px at var(--x) var(--y),#000 0%,rgba(0,0,0,.85) 40%,transparent 100%)}
+#s7 .door{left:150px;top:330px;width:940px;height:1380px;border-radius:26px;transform-origin:0% 50%;background:linear-gradient(90deg,#15171b,#24272d 70%,#0c0d10);box-shadow:inset 0 0 0 3px rgba(255,255,255,.05)}
+#s7 .handle{right:60px;top:520px;width:26px;height:420px;border-radius:13px;background:linear-gradient(90deg,#3c4048,#8a909b,#3c4048)}
+#s7 .beam{left:0;top:0;width:100%;height:100%;background:radial-gradient(circle 300px at var(--x) var(--y),rgba(255,248,230,.18),rgba(0,0,0,0) 70%);mix-blend-mode:screen;opacity:0}
+#s7 .thermo{left:640px;top:1170px;width:300px;padding:18px 22px;border-radius:20px;background:#101317;border:2px solid #2a2f37;box-shadow:0 10px 30px rgba(0,0,0,.6);opacity:0}
+#s7 .thermo .l{font-size:22px;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.08em}
+#s7 .thermo .v{font-family:'JetBrains Mono',monospace;font-size:76px;font-weight:700;color:#ff4a3a;line-height:1.05}
+#s7 .drop{position:absolute;width:10px;height:14px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#fff,rgba(200,220,240,.6))}
+/* ---- 7a router ---- */
+#s8 .desk{background:radial-gradient(ellipse 80% 60% at 50% 55%,#0a0f14,#020304 80%)}
+#s8 .router{left:120px;top:780px;width:1000px;height:300px;border-radius:40px;background:linear-gradient(#17191d,#08090b);box-shadow:0 60px 90px rgba(0,0,0,.8),inset 0 2px 0 rgba(255,255,255,.07);transform:perspective(1600px) rotateY(-24deg) rotateX(8deg)}
+#s8 .antr{position:absolute;top:-430px;width:44px;height:470px;border-radius:22px;background:linear-gradient(90deg,#0b0c0e,#26282d,#0b0c0e)}
+#s8 .ledrow{left:110px;top:150px;width:780px;display:flex;justify-content:space-between}
+#s8 .ledb{display:flex;flex-direction:column;align-items:center;gap:14px}
+#s8 .ld{width:30px;height:30px;border-radius:50%;background:#2fff86;box-shadow:0 0 18px #2fff86,0 0 42px rgba(47,255,134,.6)}
+#s8 .lt{font-size:22px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.45)}
+#s8 .reflr{left:120px;top:1130px;width:1000px;height:200px;filter:blur(12px);opacity:.35;-webkit-mask:linear-gradient(#000,transparent)}
+/* ---- 7b laptop ---- */
+#s9 .room{background:#020305}
+#s9 .lap{left:90px;top:420px;width:1060px;height:760px;border-radius:26px;background:#0a0b0d;box-shadow:0 0 0 4px #2c2f35;transform:perspective(1800px) rotateX(6deg)}
+#s9 .ui{left:22px;top:22px;right:22px;bottom:22px;border-radius:10px;overflow:hidden;background:#f3f4f6}
+#s9 .top{left:0;right:0;top:0;height:64px;background:#2b5797;display:flex;align-items:center;padding:0 26px;font-size:24px;font-weight:600;color:#fff;justify-content:space-between}
+#s9 .page{left:140px;right:140px;top:110px;bottom:0;background:#fff;box-shadow:0 0 20px rgba(0,0,0,.12);padding:50px 60px}
+#s9 .ln{height:16px;border-radius:8px;background:#d3d7de;margin-bottom:22px}
+#s9 .h1{height:30px;width:60%;border-radius:8px;background:#5b6472;margin-bottom:34px}
+#s9 .banner{left:0;right:0;top:64px;height:64px;background:#d93025;color:#fff;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:16px;transform:translateY(-70px)}
+#s9 .dlg{left:220px;right:220px;top:270px;padding:34px 40px;border-radius:18px;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.45);opacity:0;color:#1f2329}
+#s9 .dlg .h{font-size:32px;font-weight:700}
+#s9 .dlg .p{font-size:24px;color:#5b6472;margin-top:10px}
+#s9 .prog{height:14px;border-radius:7px;background:#e5e7eb;margin-top:22px;overflow:hidden}
+#s9 .prog i{display:block;height:100%;width:0;background:#2b5797}
+#s9 .pct{font-size:24px;font-weight:700;color:#d93025;margin-top:10px}
+#s9 .batt{right:24px;top:84px;font-size:22px;font-weight:700;color:#d93025;opacity:0}
+#s9 .kb{left:40px;top:1230px;width:1160px;height:520px;border-radius:30px;background:linear-gradient(#15171b,#060708);transform:perspective(1200px) rotateX(58deg);transform-origin:50% 0}
+#s9 .spill{left:40px;top:1150px;width:1160px;height:500px;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(200,215,255,.22),rgba(0,0,0,0) 70%)}
+#s9 .cur{position:absolute;width:3px;height:26px;background:#111}
+/* ---- 8 exterior ---- */
+#s10 .sky{background:linear-gradient(#05070f 0%,#0b1326 45%,#121c33 70%,#0a0f1c 100%)}
+#s10 .moon{left:770px;top:330px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#f4f1e6,#cfd2d6);box-shadow:0 0 60px rgba(220,230,255,.5),0 0 180px rgba(160,190,255,.25)}
+#s10 .star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff}
+#s10 .houses{left:0;top:0;width:1240px;height:2200px}
+#s10 .win{position:absolute;background:#05070b}
+#s10 .glow{position:absolute;background:radial-gradient(ellipse at 50% 70%,#ffb15c,#ff7a1f 45%,#5a2205 100%)}
+#s10 .halo{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,150,60,.35),rgba(255,120,40,0) 70%)}
+</style>
+<script src="gsap.min.js"></script>
+</head><body>
+<div id="root" data-composition-id="root" data-width="1080" data-height="1920" data-fps="30" data-start="0" data-duration="19.7">
+
+<!-- 1 · reloj a las 2:00 -->
+<div class="scene" id="s1"><div class="cam" id="c1">
+  <div class="fill wall"></div>
+  <div class="abs lamp" id="lamp"></div>
+  <div class="abs fanshadow" id="fsh"></div>
+  <div class="fill moon-stripes" id="ms1" style="opacity:0"></div>
+  <div class="abs glass"></div>
+  <div class="abs table"></div>
+  <svg class="abs refl" id="refl" viewBox="0 0 740 200"></svg>
+  <div class="abs clock"><div class="abs screen"><svg class="abs digits" id="dg" viewBox="0 0 620 190"></svg><div class="abs ampm" id="ampm">AM</div></div></div>
+</div><div class="cap" id="cap1"></div></div>
+
+<!-- 2a · ventilador que se detiene -->
+<div class="scene" id="s2"><div class="cam" id="c2">
+  <div class="fill ceil"></div>
+  <div class="fill moon-stripes" style="opacity:.9"></div>
+  <svg class="abs fan" id="fan" viewBox="-450 -450 900 900"></svg>
+  <div class="abs blur" id="fblur"></div>
+</div></div>
+
+<!-- 2b · termómetro -->
+<div class="scene" id="s3"><div class="cam" id="c3">
+  <div class="fill wall"></div>
+  <div class="abs board" id="board"><div class="abs unit">°C</div><div class="abs tube"></div><div class="abs merc" id="merc"></div><div class="abs bulb"></div></div>
+  <div class="fill moon-stripes" style="opacity:.55"></div>
+  <div class="fill heat" id="heat"></div>
+</div></div>
+
+<!-- 3 · seis horas -->
+<div class="scene" id="s4"><div class="cam" id="c4">
+  <div class="fill wall"></div>
+  <div class="fill moon-stripes" id="ms4" style="opacity:.7"></div>
+  <div class="abs face" id="face"></div>
+</div></div>
+
+<!-- 4 · teléfono -->
+<div class="scene" id="s5"><div class="cam" id="c5">
+  <div class="fill sheet"></div>
+  <div class="abs spill" id="spill5"></div>
+  <div class="abs phone"><div class="abs scr">
+    <div class="fill wp" id="wp">
+      <div class="abs sb"><span>Sin servicio</span><span id="bat5">21 %</span></div>
+      <div class="abs date">jueves, 26 de noviembre</div>
+      <div class="abs time" id="ptime">2:47</div>
+      <div class="abs notif" id="notif"><div class="t">⏰ ALARMA · TRABAJO</div><div class="b">5:30 a. m.</div><div class="c">Faltan 2 h 43 min</div></div>
+    </div>
+    <div class="fill glare"></div>
+  </div></div>
+</div></div>
+
+<!-- 5 · monitor de bebé -->
+<div class="scene" id="s6"><div class="cam" id="c6">
+  <div class="fill wall"></div>
+  <div class="abs dresser"></div>
+  <div class="abs ant"></div>
+  <div class="abs dev">
+    <div class="abs lcd"><div class="fill nv" id="nv">
+      <div class="abs bars" id="crib"></div>
+      <div class="abs blanket"></div>
+    </div><div class="fill scan"></div>
+    <div class="abs osd" id="osd">CUARTO NIÑOS · 02:58</div>
+    <div class="abs alert" id="alert">LLANTO DETECTADO</div></div>
+    <div class="abs leds" id="leds"></div>
+  </div>
+</div></div>
+
+<!-- 6 · nevera -->
+<div class="scene" id="s7"><div class="cam" id="c7">
+  <div class="fill kitchen"></div>
+  <div class="abs inner dark" id="innerDark"></div>
+  <div class="abs inner lit" id="innerLit" style="--x:200px;--y:200px;opacity:0"></div>
+  <div class="abs door" id="door"><div class="abs handle"></div></div>
+  <div class="abs thermo" id="thermo"><div class="l">TEMPERATURA</div><div class="v" id="tv">4,0°</div></div>
+</div></div>
+
+<!-- 7a · router -->
+<div class="scene" id="s8"><div class="cam" id="c8">
+  <div class="fill desk"></div>
+  <div class="abs router" id="router">
+    <div class="antr" style="left:120px"></div><div class="antr" style="left:840px"></div>
+    <div class="abs ledrow" id="ledrow"></div>
+  </div>
+  <div class="abs reflr" id="reflr"></div>
+</div></div>
+
+<!-- 7b · laptop -->
+<div class="scene" id="s9"><div class="cam" id="c9">
+  <div class="fill room"></div>
+  <div class="abs spill"></div>
+  <div class="abs kb"></div>
+  <div class="abs lap"><div class="abs ui">
+    <div class="abs top"><span>Propuesta_cliente_FINAL.docx</span><span style="opacity:.8">Guardando…</span></div>
+    <div class="abs page" id="page"></div>
+    <div class="abs banner" id="banner">⚠ Sin conexión a Internet</div>
+    <div class="abs batt" id="batt">🔋 7 %</div>
+    <div class="abs dlg" id="dlg"><div class="h">No se pudieron guardar los cambios</div><div class="p">Reconectando… no cierres el documento.</div><div class="prog"><i id="bar"></i></div><div class="pct" id="pct">Subiendo 0 %</div></div>
+  </div></div>
+</div></div>
+
+<!-- 8 · la calle a oscuras -->
+<div class="scene" id="s10"><div class="cam" id="c10">
+  <div class="fill sky"></div>
+  <div class="fill" id="stars"></div>
+  <div class="abs moon"></div>
+  <svg class="abs houses" id="houses" viewBox="0 0 1240 2200"></svg>
+  <div class="fill" id="wins"></div>
+</div><div class="cap" id="cap2"></div></div>
+
+<div class="grain" id="grain"></div>
+<div class="vig"></div>
+</div>
+
+<script>
+// ------------------------------------------------------------ utilidades
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rng(20261126);
+const $=s=>document.querySelector(s);
+const tl=gsap.timeline({paused:true});
+const D=19.7, F=1/30;
+// cortes (s) — coreografiados con la voz del montaje final
+const CUTS=[['#s1',0,2.70],['#s2',2.70,3.85],['#s3',3.85,4.90],['#s4',4.90,6.15],['#s5',6.15,9.10],['#s6',9.10,11.00],['#s7',11.00,14.00],['#s8',14.00,15.05],['#s9',15.05,16.60],['#s10',16.60,D]];
+CUTS.forEach(([s,a,b])=>{tl.set(s,{opacity:1},a);if(b<D)tl.set(s,{opacity:0},b)});
+// cámara: empuje lento + pulso de mano
+function cam(sel,a,b,from,to,shake){
+  tl.fromTo(sel,{scale:from.s,x:from.x||0,y:from.y||0,rotation:from.r||0},{scale:to.s,x:to.x||0,y:to.y||0,rotation:to.r||0,duration:b-a,ease:'none'},a);
+  if(shake){const inner=$(sel).firstElementChild;let t=a;while(t<b){const d=.18+R()*.22;tl.to(inner,{x:(R()-.5)*shake,y:(R()-.5)*shake,duration:d,ease:'sine.inOut'},t);t+=d}}
+}
+// grano: textura distinta cada fotograma
+for(let i=0;i<Math.round(D*30);i++){tl.set('#grain',{backgroundImage:`url(grain${i%6}.png)`,backgroundPosition:`${Math.floor(R()*540)}px ${Math.floor(R()*960)}px`},i*F)}
+// rótulo tipo máquina de escribir
+function typeCap(sel,text,t0){const el=$(sel);el.innerHTML=[...text].map(c=>`<span>${c===' '?'&nbsp;':c}</span>`).join('');[...el.children].forEach((c,i)=>tl.set(c,{opacity:1},t0+i*0.045))}
+
+// ------------------------------------------------------ 1 · reloj 2:00
+const SEG={a:[[14,0],[86,0],[76,10],[24,10]],b:[[90,4],[90,86],[80,78],[80,14]],c:[[90,104],[90,186],[80,176],[80,112]],d:[[14,190],[86,190],[76,180],[24,180]],e:[[10,104],[10,186],[20,176],[20,112]],f:[[10,4],[10,86],[20,78],[20,14]],g:[[14,95],[24,89],[76,89],[86,95],[76,101],[24,101]]};
+const MAP={0:'abcdef',1:'bc',2:'abdeg',3:'abcdg',4:'bcfg',5:'acdfg',6:'acdefg',7:'abc',8:'abcdefg',9:'abcdfg'};
+function digitSVG(d,x,on){let s='';for(const k in SEG){const p=SEG[k].map(([px,py])=>`${px*1.25+x},${py}`).join(' ');s+=`<polygon points="${p}" fill="${MAP[d].includes(k)?on:'rgba(255,40,40,.06)'}"/>`}return s}
+function clockSVG(h,m,col){return digitSVG(h,20,col)+`<circle cx="190" cy="62" r="11" fill="${col}" class="colon"/><circle cx="190" cy="128" r="11" fill="${col}" class="colon"/>`+digitSVG(Math.floor(m/10),250,col)+digitSVG(m%10,420,col)}
+$('#dg').innerHTML=clockSVG(2,0,'#ff2b2b');
+$('#refl').innerHTML=`<g transform="translate(60,10)">${clockSVG(2,0,'#ff2b2b')}</g>`;
+tl.set('#s1 .colon',{opacity:1},0);tl.set('#s1 .colon',{opacity:.15},0.5);tl.set('#s1 .colon',{opacity:1},1.0);tl.set('#s1 .colon',{opacity:.15},1.5);tl.set('#s1 .colon',{opacity:1},2.0);
+tl.fromTo('#fsh',{rotation:0},{rotation:1400,duration:2.30,ease:'none'},0);
+typeCap('#cap1','02:00 a. m.',0.15);
+cam('#c1',0,2.70,{s:1.0,y:30},{s:1.10,y:-10},0);
+// el apagón, en «luz»: parpadeo y muerte de la corriente
+[[2.27,.15],[2.31,1],[2.35,0],[2.39,.75],[2.42,.05],[2.45,0]].forEach(([t,o])=>{tl.set('#dg,#refl,#ampm,#lamp',{opacity:o},t);tl.set('#s1 .wall',{opacity:o*0.7+0.3},t)});
+tl.to('#fsh',{rotation:'+=160',opacity:0,duration:.25,ease:'power2.out'},2.30);
+tl.to('#ms1',{opacity:.7,duration:.25},2.45);
+tl.set('#cap1',{opacity:0},2.30);
+
+// ------------------------------------------------------ 2a · ventilador
+(function(){let s='';for(let i=0;i<5;i++){s+=`<g transform="rotate(${i*72})"><path d="M -30 -40 C -70 -200, -95 -330, -55 -415 Q 0 -440, 55 -415 C 95 -330, 70 -200, 30 -40 Z" fill="url(#bl)" stroke="rgba(160,185,230,.25)" stroke-width="3"/></g>`}
+ $('#fan').innerHTML=`<defs><linearGradient id="bl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#151311"/><stop offset=".5" stop-color="#2b2724"/><stop offset="1" stop-color="#121010"/></linearGradient><radialGradient id="hub"><stop offset="0" stop-color="#5d6270"/><stop offset="1" stop-color="#16181d"/></radialGradient></defs>`+s+`<circle r="82" fill="url(#hub)" stroke="rgba(170,190,230,.35)" stroke-width="3"/><circle r="22" fill="#0c0d10"/>`})();
+tl.fromTo('#fan',{rotation:0},{rotation:760,duration:1.15,ease:'power2.out'},2.70);
+tl.fromTo('#fblur',{opacity:.95},{opacity:0,duration:.75,ease:'power1.in'},2.70);
+tl.fromTo('#fan',{opacity:.35},{opacity:1,duration:.6,ease:'power1.out'},2.70);
+cam('#c2',2.70,3.85,{s:1.04,r:-2},{s:1.13,r:2},6);
+
+// ------------------------------------------------------ 2b · termómetro
+(function(){const b=$('#board');for(let v=20;v<=40;v++){const y=1250-(v-20)*45;const big=v%5===0;b.insertAdjacentHTML('beforeend',`<div class="tick" style="left:${big?255:262}px;top:${y}px;width:${big?70:40}px"></div>`+(big?`<div class="num" style="left:330px;top:${y-22}px;text-align:left">${v}</div>`:''))}})();
+const mercH=v=>(v-20)*45+60;
+tl.fromTo('#merc',{height:mercH(29)},{height:mercH(36.5),duration:.85,ease:'power2.inOut'},3.88);
+tl.fromTo('#heat',{opacity:0},{opacity:.85,duration:.9,ease:'power1.in'},3.90);
+cam('#c3',3.85,4.90,{s:1.18,y:260},{s:1.32,y:120},4);
+
+// ------------------------------------------------------ 3 · seis horas
+(function(){const f=$('#face');for(let i=0;i<12;i++)f.insertAdjacentHTML('beforeend',`<div class="mk" style="transform:rotate(${i*30}deg);top:0;height:${i%3?34:56}px"></div>`);
+ f.insertAdjacentHTML('beforeend',`<div class="hand" id="hh" style="width:26px;height:240px;margin-left:-13px"></div><div class="hand" id="mg2" style="width:14px;height:360px;margin-left:-7px;opacity:0"></div><div class="hand" id="mg1" style="width:14px;height:360px;margin-left:-7px;opacity:0"></div><div class="hand" id="mh" style="width:14px;height:360px;margin-left:-7px"></div><div class="abs" style="left:50%;top:50%;width:44px;height:44px;margin:-22px;border-radius:50%;background:#0d0f13"></div>`)})();
+tl.fromTo('#hh',{rotation:60},{rotation:240,duration:1.1,ease:'power2.inOut'},4.98);
+tl.fromTo('#mh',{rotation:0},{rotation:2160,duration:1.1,ease:'power2.inOut'},4.98);
+tl.fromTo('#mg1',{rotation:-14},{rotation:2146,duration:1.1,ease:'power2.inOut'},4.98);
+tl.fromTo('#mg2',{rotation:-28},{rotation:2132,duration:1.1,ease:'power2.inOut'},4.98);
+tl.to('#mg1',{opacity:.35,duration:.3,yoyo:true,repeat:1,repeatDelay:.25},5.05);
+tl.to('#mg2',{opacity:.18,duration:.3,yoyo:true,repeat:1,repeatDelay:.25},5.05);
+tl.fromTo('#ms4',{x:-260},{x:260,duration:1.25,ease:'power1.inOut'},4.90);
+cam('#c4',4.90,6.15,{s:1.0},{s:1.08},0);
+
+// ------------------------------------------------------ 4 · teléfono
+tl.to('#wp',{opacity:1,duration:.18},6.22);
+tl.to('#spill5',{opacity:1,duration:.25},6.22);
+tl.fromTo('#notif',{opacity:0,y:-30},{opacity:1,y:0,duration:.35,ease:'power2.out'},8.55);
+cam('#c5',6.15,9.10,{s:1.0,r:0},{s:1.14,r:-1.5},3);
+
+// ------------------------------------------------------ 5 · monitor de bebé
+(function(){const c=$('#crib');for(let i=0;i<10;i++)c.insertAdjacentHTML('beforeend',`<div class="bar" style="left:${i*58}px"></div>`);c.insertAdjacentHTML('beforeend','<div class="rail" style="top:0"></div><div class="rail" style="bottom:0"></div>');
+ const l=$('#leds');['#36d26b','#36d26b','#f2c230','#ff8a1f','#ff2d2d'].forEach((col,i)=>l.insertAdjacentHTML('beforeend',`<div class="led" id="led${i}" data-c="${col}"></div>`))})();
+for(let t=9.10;t<11.0;t+=2*F){const lvl=t<9.45?R()*1.2:t<10.5?1+R()*2.5+(t-9.45)*1.6:3.6+R()*1.4;for(let i=0;i<5;i++){const on=i<lvl;const c=$('#led'+i).dataset.c;tl.set('#led'+i,{backgroundColor:on?c:'#3a3d42',boxShadow:on?`0 0 18px ${c}`:'none'},t)}}
+for(let t=9.10;t<11.0;t+=F*3){tl.set('#nv',{filter:`contrast(1.1) brightness(${0.85+R()*0.3})`},t)}
+tl.set('#alert',{opacity:1},10.50);tl.set('#alert',{opacity:0},10.70);tl.set('#alert',{opacity:1},10.84);
+cam('#c6',9.10,11.00,{s:1.06},{s:1.16,y:-40},10);
+
+// ------------------------------------------------------ 6 · nevera
+(function(){
+ const items=`
+ <div class="shelf" style="top:420px"></div><div class="shelf" style="top:800px"></div><div class="shelf" style="top:1160px"></div>
+ <div class="abs" style="left:70px;top:150px;width:150px;height:270px;border-radius:10px 10px 6px 6px;background:linear-gradient(90deg,#e9eef5,#fff 50%,#d5dbe4)"><div class="abs" style="left:0;right:0;top:110px;height:80px;background:#2e6fd0"></div><div class="abs" style="left:45px;top:-40px;width:60px;height:46px;background:#e3e8ef;clip-path:polygon(0 100%,50% 0,100% 100%)"></div></div>
+ <div class="abs" style="left:260px;top:300px;width:330px;height:120px;border-radius:14px;background:#c9b48d"></div>
+ ${[0,1,2,3,4].map(i=>`<div class="abs" style="left:${275+i*62}px;top:250px;width:56px;height:74px;border-radius:50%/60% 60% 40% 40%;background:radial-gradient(circle at 40% 35%,#fff8ee,#e7d6bd)"></div>`).join('')}
+ <div class="abs" style="left:640px;top:200px;width:220px;height:220px;border-radius:24px;background:linear-gradient(#d9dee5,#b7bec9)"><div class="abs" style="left:18px;right:18px;top:40px;bottom:18px;border-radius:12px;background:radial-gradient(circle at 50% 50%,#f1b3a6,#d98673)"></div></div>
+ <div class="abs" style="left:80px;top:560px;width:380px;height:240px;border-radius:30px;background:rgba(220,235,245,.55);border:3px solid rgba(255,255,255,.7)"><div class="abs" style="left:30px;top:40px;width:200px;height:170px;border-radius:20px;background:radial-gradient(circle at 40% 40%,#f2a99a,#c8604e)"></div><div class="abs" style="left:220px;top:70px;width:130px;height:130px;border-radius:20px;background:radial-gradient(circle at 40% 40%,#f2b6a8,#cf6f5d)"></div></div>
+ ${[0,1,2,3].map(i=>`<div class="abs" style="left:${520+i*88}px;top:${700-(i%2)*14}px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a6e,#d8261a 55%,#8e1208)"></div>`).join('')}
+ <div class="abs" style="left:90px;top:930px;width:420px;height:230px;border-radius:120px 120px 40px 40px;background:radial-gradient(ellipse at 50% 30%,#9fd27a,#4f8f34 70%)"></div>
+ <div class="abs" style="left:580px;top:880px;width:110px;height:280px;border-radius:30px 30px 14px 14px;background:linear-gradient(90deg,#6a1b10,#b23a22 50%,#6a1b10)"></div>
+ <div class="abs" style="left:720px;top:960px;width:150px;height:200px;border-radius:16px;background:linear-gradient(#f6f3ea,#dcd6c8)"><div class="abs" style="left:0;right:0;top:0;height:40px;border-radius:16px 16px 0 0;background:#e85d9a"></div></div>
+ ${Array.from({length:40},()=>`<div class="drop" style="left:${Math.floor(R()*900)}px;top:${Math.floor(R()*1300)}px;opacity:${(0.3+R()*0.6).toFixed(2)}"></div>`).join('')}`;
+ $('#innerDark').innerHTML=items;$('#innerLit').innerHTML=items;})();
+tl.fromTo('#door',{rotationY:0,transformPerspective:1500},{rotationY:-112,duration:.75,ease:'power2.inOut'},11.05);
+// linterna del teléfono: clic y barrido
+tl.set('#innerLit',{opacity:1},11.62);
+const BEAM=[[11.62,260,260],[12.05,190,300],[12.45,420,290],[12.85,400,680],[13.15,300,690],[13.55,760,600],[13.95,780,560]];
+tl.set('#innerLit',{'--x':BEAM[0][1]+'px','--y':BEAM[0][2]+'px'},BEAM[0][0]);
+for(let i=1;i<BEAM.length;i++){tl.to('#innerLit',{'--x':BEAM[i][1]+'px','--y':BEAM[i][2]+'px',duration:BEAM[i][0]-BEAM[i-1][0],ease:'sine.inOut'},BEAM[i-1][0])}
+tl.fromTo('#thermo',{opacity:0,y:20},{opacity:1,y:0,duration:.25},13.50);
+(function(){let t=13.55;for(let v=4.0;v<=11.8;v+=0.6){tl.set('#tv',{textContent:v.toFixed(1).replace('.',',')+'°'},t);t+=0.03}})();
+cam('#c7',11.00,14.00,{s:1.0},{s:1.12,y:-30},5);
+
+// ------------------------------------------------------ 7a · router
+(function(){const r=$('#ledrow');['POWER','INTERNET','WI-FI','LAN'].forEach((n,i)=>r.insertAdjacentHTML('beforeend',`<div class="ledb"><div class="ld" id="rl${i}"></div><div class="lt">${n}</div></div>`));$('#reflr').innerHTML=r.outerHTML.replace(/id="rl/g,'id="rr').replace('id="ledrow"','')})();
+for(let t=14.0;t<14.40;t+=2*F){[1,2,3].forEach(i=>{const on=R()>0.35;tl.set(`#rl${i},#rr${i}`,{opacity:on?1:.25},t)})}
+const AMB={background:'#ffb11f',boxShadow:'0 0 18px #ffb11f,0 0 40px rgba(255,177,31,.6)'};
+tl.set('#rl1,#rr1',{...AMB,opacity:1},14.40);tl.set('#rl1,#rr1',{opacity:.15},14.50);tl.set('#rl1,#rr1',{opacity:1},14.58);tl.set('#rl1,#rr1',{opacity:0},14.66);
+tl.set('#rl2,#rr2',{opacity:0},14.74);tl.set('#rl3,#rr3',{opacity:0},14.82);tl.set('#rl0,#rr0',{opacity:.2},14.90);tl.set('#rl0,#rr0',{opacity:0},14.94);
+cam('#c8',14.00,15.05,{s:1.08,x:40},{s:1.18,x:-20},3);
+
+// ------------------------------------------------------ 7b · laptop
+(function(){let h='<div class="h1"></div>';for(let i=0;i<14;i++)h+=`<div class="ln" style="width:${60+Math.floor(R()*38)}%"></div>`;$('#page').innerHTML=h+'<div class="cur" id="cur" style="left:420px;top:470px"></div>'})();
+for(let t=15.05;t<16.6;t+=0.5){tl.set('#cur',{opacity:1},t);tl.set('#cur',{opacity:0},t+0.25)}
+tl.to('#banner',{y:0,duration:.25,ease:'power2.out'},15.10);
+tl.set('#batt',{opacity:1},15.10);
+tl.fromTo('#dlg',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.22,ease:'power2.out'},15.45);
+tl.to('#bar',{width:'87%',duration:.35,ease:'power1.out'},15.50);
+(function(){let t=15.50;for(let p=0;p<=87;p+=6){tl.set('#pct',{textContent:'Subiendo '+Math.min(p,87)+' %'},t);t+=0.025}tl.set('#pct',{textContent:'Subiendo 87 %'},t)})();
+tl.set('#pct',{textContent:'Error de red · 87 %'},15.86);
+cam('#c9',15.05,16.60,{s:1.02,y:20},{s:1.12,y:-20},3);
+
+// ------------------------------------------------------ 8 · calle a oscuras
+(function(){let s='';for(let i=0;i<70;i++)s+=`<div class="star" style="left:${Math.floor(R()*1240)}px;top:${Math.floor(R()*900)}px;opacity:${(0.2+R()*0.7).toFixed(2)}"></div>`;$('#stars').innerHTML=s;
+ $('#houses').innerHTML=`
+ <path d="M0 1240 L160 1120 L320 1240 L320 1500 L0 1500Z" fill="#070a12"/>
+ <path d="M900 1200 L1060 1060 L1240 1200 L1240 1500 L900 1500Z" fill="#070a12"/>
+ <path d="M300 1180 L620 940 L940 1180 L940 1700 L300 1700Z" fill="#0a0e18"/>
+ <rect x="0" y="1500" width="1240" height="700" fill="#04060a"/>
+ <rect x="1105" y="700" width="16" height="820" fill="#06080d"/><rect x="1040" y="760" width="150" height="10" fill="#06080d"/>
+ <path d="M-20 820 Q 520 900 1113 772" stroke="#0b0f18" stroke-width="5" fill="none"/>
+ <path d="M-20 870 Q 540 960 1113 800" stroke="#0b0f18" stroke-width="4" fill="none"/>
+ <rect x="150" y="1060" width="10" height="440" fill="#06080d"/><path d="M155 1062 q 40 -30 90 -10" stroke="#06080d" stroke-width="8" fill="none"/>`;
+ const w=$('#wins');
+ [[60,1300,70,90],[200,1300,70,90],[960,1260,70,90],[1100,1260,70,90],[380,1460,120,150],[740,1460,120,150]].forEach(([x,y,ww,hh])=>w.insertAdjacentHTML('beforeend',`<div class="win" style="left:${x}px;top:${y}px;width:${ww}px;height:${hh}px"></div>`));
+ w.insertAdjacentHTML('beforeend',`<div class="halo" id="halo" style="left:430px;top:1110px;width:380px;height:380px"></div>
+ <div class="glow" id="cw" style="left:540px;top:1230px;width:160px;height:190px"></div>
+ <svg class="abs" style="left:540px;top:1230px" width="160" height="190" viewBox="0 0 160 190">
+  <circle cx="44" cy="96" r="20" fill="#120703"/><path d="M14 190 Q14 120 44 118 Q74 120 74 190Z" fill="#120703"/>
+  <circle cx="100" cy="128" r="14" fill="#120703"/><path d="M80 190 Q80 146 100 144 Q120 146 120 190Z" fill="#120703"/>
+  <circle cx="134" cy="138" r="11" fill="#120703"/><path d="M118 190 Q118 156 134 154 Q150 156 150 190Z" fill="#120703"/>
+  <rect x="0" y="0" width="160" height="190" fill="none" stroke="#0a0e18" stroke-width="10"/><rect x="76" y="0" width="8" height="190" fill="#0a0e18"/></svg>`)})();
+for(let t=16.6;t<D;t+=F*2){const k=0.75+R()*0.25;tl.set('#cw',{opacity:k},t);tl.set('#halo',{opacity:k*0.9},t)}
+typeCap('#cap2','03:14 a. m.',18.35);
+cam('#c10',16.60,D,{s:1.0,y:0},{s:1.22,y:-150},2);
+
+[['#c2',2.70],['#c3',3.85],['#c5',6.15],['#c6',9.10],['#c7',11.00],['#c10',16.60]].forEach(([c,t])=>tl.fromTo(c,{filter:'blur(9px)'},{filter:'blur(0px)',duration:.32,ease:'power2.out'},t));
+[[2.30,14,-8],[2.34,-12,10],[2.38,9,-6],[2.42,-5,4],[2.46,0,0]].forEach(([t,x,y])=>tl.set('#s1',{x:x,y:y},t));
+tl.set({},{},D);
+window.__timelines={root:tl};
+</script>
+</body></html>

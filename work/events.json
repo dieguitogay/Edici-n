@@ -1,21 +1,9 @@
 {
- "blackout": {
-  "start": 13.5,
-  "dur": 2.8999999999999986,
-  "items": [
-   {
-    "t": 0.08000000000000007,
-    "icon": "fridge",
-    "label": "Nevera"
-   },
-   {
-    "t": 1.2599999999999998,
-    "icon": "wifi",
-    "label": "Internet"
-   }
-  ],
-  "sf": 405,
-  "df": 87
+ "drama": {
+  "start": 0.0,
+  "dur": 19.7,
+  "sf": 0,
+  "df": 591
  },
  "infra": {
   "start": 29.06,

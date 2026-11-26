@@ -50,7 +50,11 @@ const Overlay: React.FC<{g: Gfx}> = ({g}) => {
 	return (
 		<AbsoluteFill style={{opacity: hidden ? 0 : 1}}>
 			{g.full ? <AbsoluteFill style={{background: 'rgba(6,12,40,0.42)'}} /> : null}
-			<OffthreadVideo src={staticFile(`gfx/${g.id}.mov`)} transparent muted />
+			{g.id === 'drama' ? (
+				<OffthreadVideo src={staticFile('gfx/drama.mp4')} muted />
+			) : (
+				<OffthreadVideo src={staticFile(`gfx/${g.id}.mov`)} transparent muted />
+			)}
 		</AbsoluteFill>
 	);
 };
@@ -112,12 +116,16 @@ export const Edit: React.FC = () => (
 		))}
 		{(edl.gfx as Gfx[])
 			.slice()
-			.sort((x, y) => Number(x.full) - Number(y.full))
+			.sort((x, y) => Number(x.id !== 'drama') - Number(y.id !== 'drama') || Number(x.full) - Number(y.full))
 			.map((g) => (
 				<Sequence key={g.id} from={g.sf} durationInFrames={g.df} premountFor={30}>
 					<Overlay g={g} />
 				</Sequence>
 			))}
+		{/* Diseño sonoro de la apertura: siempre por debajo de la voz */}
+		<Sequence from={0} durationInFrames={606}>
+			<Audio src={staticFile('sfx.wav')} />
+		</Sequence>
 		<Subtitles />
 	</AbsoluteFill>
 );

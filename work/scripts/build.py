@@ -231,10 +231,9 @@ def F(t):
     return round(T(t) * FPS)
 
 ev = {}
-# Apagón: detalles breves al mencionarse (no hay tomas reales de estos objetos)
-ev['blackout'] = dict(start=T(14.40), dur=T(17.30) - T(14.40),
-                      items=[dict(t=T(14.48) - T(14.40), icon='fridge', label='Nevera'),
-                             dict(t=T(15.66) - T(14.40), icon='wifi', label='Internet')])
+# Apertura dramatizada (Hyperframes): ocupa 0–19,70 s y vuelve al rostro
+# 1 fotograma antes de «El verdadero lujo hoy».
+ev['drama'] = dict(start=0.0, dur=591 / FPS)
 # Infraestructura: corte en L. La imagen pasa al gráfico 9 fotogramas antes
 # de que termine «…en 3 meses» y la voz remata sobre el apoyo.
 infra_in = T(30.46) - 9 / FPS

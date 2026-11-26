@@ -550,9 +550,9 @@
  ],
  "gfx": [
   {
-   "id": "blackout",
-   "sf": 405,
-   "df": 87,
+   "id": "drama",
+   "sf": 0,
+   "df": 591,
    "full": false
   },
   {
