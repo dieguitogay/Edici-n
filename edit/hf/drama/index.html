@@ -103,7 +103,7 @@ html,body{margin:0;background:#000}
 #s8 .reflr{left:120px;top:1130px;width:1000px;height:200px;filter:blur(12px);opacity:.35;-webkit-mask:linear-gradient(#000,transparent)}
 /* ---- 7b laptop ---- */
 #s9 .room{background:#020305}
-#s9 .lap{left:90px;top:420px;width:1060px;height:760px;border-radius:26px;background:#0a0b0d;box-shadow:0 0 0 4px #2c2f35;transform:perspective(1800px) rotateX(6deg)}
+#s9 .lap{left:90px;top:640px;width:1060px;height:760px;border-radius:26px;background:#0a0b0d;box-shadow:0 0 0 4px #2c2f35;transform:perspective(1800px) rotateX(6deg)}
 #s9 .ui{left:22px;top:22px;right:22px;bottom:22px;border-radius:10px;overflow:hidden;background:#f3f4f6}
 #s9 .top{left:0;right:0;top:0;height:64px;background:#2b5797;display:flex;align-items:center;padding:0 26px;font-size:24px;font-weight:600;color:#fff;justify-content:space-between}
 #s9 .page{left:140px;right:140px;top:110px;bottom:0;background:#fff;box-shadow:0 0 20px rgba(0,0,0,.12);padding:50px 60px}
@@ -117,8 +117,8 @@ html,body{margin:0;background:#000}
 #s9 .prog i{display:block;height:100%;width:0;background:#2b5797}
 #s9 .pct{font-size:24px;font-weight:700;color:#d93025;margin-top:10px}
 #s9 .batt{right:24px;top:84px;font-size:22px;font-weight:700;color:#d93025;opacity:0}
-#s9 .kb{left:40px;top:1230px;width:1160px;height:520px;border-radius:30px;background:linear-gradient(#15171b,#060708);transform:perspective(1200px) rotateX(58deg);transform-origin:50% 0}
-#s9 .spill{left:40px;top:1150px;width:1160px;height:500px;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(200,215,255,.22),rgba(0,0,0,0) 70%)}
+#s9 .kb{left:40px;top:1450px;width:1160px;height:520px;border-radius:30px;background:linear-gradient(#15171b,#060708);transform:perspective(1200px) rotateX(58deg);transform-origin:50% 0}
+#s9 .spill{left:40px;top:1370px;width:1160px;height:500px;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(200,215,255,.22),rgba(0,0,0,0) 70%)}
 #s9 .cur{position:absolute;width:3px;height:26px;background:#111}
 /* ---- 8 exterior ---- */
 #s10 .sky{background:linear-gradient(#05070f 0%,#0b1326 45%,#121c33 70%,#0a0f1c 100%)}
@@ -224,10 +224,10 @@ html,body{margin:0;background:#000}
   <div class="abs spill"></div>
   <div class="abs kb"></div>
   <div class="abs lap"><div class="abs ui">
-    <div class="abs top"><span>Propuesta_cliente_FINAL.docx</span><span style="opacity:.8">Guardando…</span></div>
+    <div class="abs top"><span>Propuesta_cliente_FINAL.docx</span><span style="color:#ffb4ab">Batería 7 %</span></div>
     <div class="abs page" id="page"></div>
     <div class="abs banner" id="banner">⚠ Sin conexión a Internet</div>
-    <div class="abs batt" id="batt">🔋 7 %</div>
+    
     <div class="abs dlg" id="dlg"><div class="h">No se pudieron guardar los cambios</div><div class="p">Reconectando… no cierres el documento.</div><div class="prog"><i id="bar"></i></div><div class="pct" id="pct">Subiendo 0 %</div></div>
   </div></div>
 </div></div>
@@ -360,12 +360,12 @@ cam('#c8',14.00,15.05,{s:1.08,x:40},{s:1.18,x:-20},3);
 (function(){let h='<div class="h1"></div>';for(let i=0;i<14;i++)h+=`<div class="ln" style="width:${60+Math.floor(R()*38)}%"></div>`;$('#page').innerHTML=h+'<div class="cur" id="cur" style="left:420px;top:470px"></div>'})();
 for(let t=15.05;t<16.6;t+=0.5){tl.set('#cur',{opacity:1},t);tl.set('#cur',{opacity:0},t+0.25)}
 tl.to('#banner',{y:0,duration:.25,ease:'power2.out'},15.10);
-tl.set('#batt',{opacity:1},15.10);
+
 tl.fromTo('#dlg',{opacity:0,scale:.96},{opacity:1,scale:1,duration:.22,ease:'power2.out'},15.45);
 tl.to('#bar',{width:'87%',duration:.35,ease:'power1.out'},15.50);
 (function(){let t=15.50;for(let p=0;p<=87;p+=6){tl.set('#pct',{textContent:'Subiendo '+Math.min(p,87)+' %'},t);t+=0.025}tl.set('#pct',{textContent:'Subiendo 87 %'},t)})();
-tl.set('#pct',{textContent:'Error de red · 87 %'},15.86);
-cam('#c9',15.05,16.60,{s:1.02,y:20},{s:1.12,y:-20},3);
+tl.set('#pct',{textContent:'Error de red · 87 %'},15.95);
+cam('#c9',15.05,16.60,{s:1.10,y:0},{s:1.22,y:-30},3);
 
 // ------------------------------------------------------ 8 · calle a oscuras
 (function(){let s='';for(let i=0;i<70;i++)s+=`<div class="star" style="left:${Math.floor(R()*1240)}px;top:${Math.floor(R()*900)}px;opacity:${(0.2+R()*0.7).toFixed(2)}"></div>`;$('#stars').innerHTML=s;
