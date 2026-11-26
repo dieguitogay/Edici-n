@@ -15,3 +15,5 @@ work/*.png
 edit/public/
 edit/hf/out/
 edit/hf/test/
+work/snap/
+.hyperframes/
